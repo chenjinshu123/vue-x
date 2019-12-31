@@ -8,4 +8,5 @@ Vue.component(Header.name, Header);
 var vm =new Vue({
     el:"#app",
     render: c =>c(App)
-})
+}) 
+ console.log('hello')
