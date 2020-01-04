@@ -3,6 +3,8 @@ import homepage from './components/tabbar/homepage.vue'
 import vip from './components/tabbar/vip.vue'
 import shopping from './components/tabbar/shopping.vue'
 import search from './components/tabbar/search.vue'
+import newslist from './components/child-components/newslist.vue'
+import newsinfo from './components/child-components/newsinfo.vue'
 
 
 var router=new VueRouter({
@@ -14,7 +16,9 @@ var router=new VueRouter({
     },
     {path:'/vip',component:vip},
     {path:'/shopping',component:shopping},
-    {path:'/search',component:search}
+    {path:'/search',component:search},
+    {path:'/homepage/newslist',component:newslist},
+    {path:'/homepage/newsinfo/:id',component:newsinfo}
 
 
     ],

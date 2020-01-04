@@ -42,7 +42,8 @@
 }
 .App-contain {
   padding-top: 40px;
-  overflow-x: hidden;
+  overflow: hidden;
+  padding-bottom: 50PX
 }
 
 
