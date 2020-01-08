@@ -5,7 +5,10 @@ import shopping from './components/tabbar/shopping.vue'
 import search from './components/tabbar/search.vue'
 import newslist from './components/child-components/newslist.vue'
 import newsinfo from './components/child-components/newsinfo.vue'
-
+import photoslist from './components/child-components/photoslist.vue'
+import photoDetailed from './components/child-components/photoDetailed.vue'
+import phonelist from './components/child-components/phonelist.vue'
+import phoneinfo from './components/child-components/phoneinfo.vue'
 
 var router=new VueRouter({
     routes:[
@@ -18,7 +21,11 @@ var router=new VueRouter({
     {path:'/shopping',component:shopping},
     {path:'/search',component:search},
     {path:'/homepage/newslist',component:newslist},
-    {path:'/homepage/newsinfo/:id',component:newsinfo}
+    {path:'/homepage/newsinfo/:id',component:newsinfo},
+    {path:'/homepage/photoslist',component:photoslist},
+    {path:'/homepage/photoslist/photoinfo/:id',component:photoDetailed},
+    {path:'/homepage/phonelist',component:phonelist},
+    {path:'/homepage/phonelist/phoneinfo/:id',component:phoneinfo}
 
 
     ],

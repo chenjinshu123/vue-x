@@ -28,9 +28,9 @@ export default {
     },
     methods: {
         getnewslist(){
-            this.$http.get('http://www.liulongbin.top:3005/api/getnewslist').then((result)=>{
+            this.$http.get('http://www.liulongbin.top:3005/api/getnewslist/').then((result)=>{
                 if(result.body.status===0){
-this.newslist= result.body.message
+                 this.newslist= result.body.message  
                 }else{
                     Toast('获取json数据失败')
                 }

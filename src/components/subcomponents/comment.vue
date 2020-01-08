@@ -2,10 +2,10 @@
   <div class="cmt-container">
     <h3>发表评论</h3>
     <hr />
-    <textarea placeholder="请输入您要发表的评论" maxlength="120"></textarea>
-    <mt-button type="primary" size="large" class="push">发表评论</mt-button>
+    <textarea placeholder="请输入您要发表的评论" maxlength="120" v-model="msg"></textarea>
+    <mt-button type="primary" size="large" class="push" @click="postComment">发表评论</mt-button>
     <div class="cmt-list">
-      <div class="cmt-item" v-for="(item,i) in commentslist" :key="item.add_time">
+      <div class="cmt-item" v-for="(item,i) in commentslist" :key="i">
         <div
           class="cmt-title"
         >{{i+1}}楼&nbsp;&nbsp;用户:{{item.user_name}}&nbsp;&nbsp;发表时间:{{item.add_time | dateFormat}}</div>
@@ -22,7 +22,8 @@ export default {
   data() {
     return {
       pageindex: 1,
-      commentslist: []
+      commentslist: [],
+      msg: "" //评论输入的内容
     };
   },
   created() {
@@ -30,7 +31,8 @@ export default {
   },
   methods: {
     getcomment() {
-      this.$http.get(
+      this.$http
+        .get(
           "http://www.liulongbin.top:3005/api/getcomments/" +
             this.id +
             "?pageindex=" +
@@ -38,15 +40,37 @@ export default {
         )
         .then(result => {
           if (result.body.status === 0) {
-            this.commentslist = this.commentslist.concat(result.body.message)
+            this.commentslist = this.commentslist.concat(result.body.message);
           } else {
             Toast("获取评论数据失败");
           }
         });
     },
-    getmorecomment(){
-        this.pageindex++
-        this.getcomment()
+    getmorecomment() {
+      this.pageindex++;
+      this.getcomment();
+    },
+    postComment() {
+      if (this.msg.trim().length === 0) {
+        return Toast("评论内容不能为空");
+      }
+      this.$http
+        .post(
+          "http://www.liulongbin.top:3005/api/postcomment/" +
+            this.$route.params.id,
+          { content: this.msg.trim() }
+        )
+        .then(result => {
+          if (result.body.status === 0) {
+            var cmt = {
+              user_name: "匿名用户",
+              add_time: Date.now(),
+              content: this.msg.trim()
+            };
+            this.commentslist.unshift(cmt)
+            this.msg=''
+          }
+        });
     }
   },
   props: ["id"]
