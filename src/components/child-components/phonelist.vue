@@ -5,7 +5,7 @@
         <div class="commodity-photo">
           <img :src="item.img_url" alt />
         </div>
-        <p style="background-color:white">华为(HUAWEI)荣耀6Plus16G双4G版</p>
+        <p style="background-color:white">{{item.title}}</p>
         <div class="S">
           <p>
             <span style="font-size:1.2em;color:red">￥{{item.sell_price}}</span>

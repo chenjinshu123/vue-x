@@ -1,6 +1,9 @@
 <template>
   <div class="App-contain">
     <mt-header class="header" fixed title="Text-Firstpage">
+       <span @click="goback" slot="left" v-show="flag">
+    <mt-button icon="back">返回</mt-button>
+       </span>
     </mt-header>
 
     <transition>
@@ -22,7 +25,7 @@
       </router-link>
       <router-link class="mui-tab-item-cjs" to="/shopping">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-          <span class="mui-badge" id="badge">0 </span>
+          <span class="mui-badge" id="badge">{{this.$store.getters.getAllCount}} </span>
         </span>
         <span class="mui-tab-label" >购物车</span>
       </router-link>
@@ -35,11 +38,38 @@
 </template>
 
 <script>
+export default{
+  data() {
+    return {
+     flag:false
+    }
+  },
+  created() {
+    this.flag = this.$route.path ==='/homepage'?false : true;
+  },
+  methods: {
+     goback(){
+      this.$router.go(-1)
+    }
+
+  },
+  watch: {
+    '$route.path':function(a){
+      if(a==="/homepage"){
+        this.flag=false
+      }else{
+        this.flag=true
+      }
+    }
+  },
+
+  
+}
 </script>
 
 <style lang="scss" scoped>
 .header {
-  background-color: red;
+  background-color: black;
 }
 .App-contain {
   padding-top: 40px;
