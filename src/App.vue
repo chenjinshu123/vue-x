@@ -1,6 +1,6 @@
 <template>
   <div class="App-contain">
-    <mt-header class="header" fixed title="Text-Firstpage">
+    <mt-header class="header" fixed title="陈锦署--vue">
        <span @click="goback" slot="left" v-show="flag">
     <mt-button icon="back">返回</mt-button>
        </span>
